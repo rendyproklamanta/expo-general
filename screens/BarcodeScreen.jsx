@@ -4,7 +4,8 @@ import { Camera, CameraType, FlashMode } from 'expo-camera';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function App() {
+export default function BarcodeScreen() {
+
    const [hasPermission, setHasPermission] = useState(null);
    const [type, setType] = useState(CameraType.back);
    const [scanned, setScanned] = useState(false);
