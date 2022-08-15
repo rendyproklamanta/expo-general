@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "unnamed-snack",
-    "slug": "snack-2640438a-dc55-4bdc-a7c4-dac91e345bf0",
+    "name": "expo-name",
+    "slug": "expo-slug",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
