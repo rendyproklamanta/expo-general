@@ -11,7 +11,6 @@ if (__DEV__) {
 AppRegistry.registerComponent('main', () => withExpoRoot(App));
 if ('web' === Platform.OS) {
    const rootTag = createRoot(document.getElementById('root') ?? document.getElementById('main'));
-
    const RootComponent = withExpoRoot(App);
    rootTag.render(<RootComponent />);
 }

@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/web-build/ [NC]
+RewriteRule .* web-build//$0 [L]

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-name",
-    "slug": "expo-slug",
+    "name": "your-expo-name",
+    "slug": "your-expo-slug",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
