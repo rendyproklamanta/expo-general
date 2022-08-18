@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect, useLayoutEffect } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
@@ -8,9 +8,12 @@ function ProfileScreen({ route }) {
 
    useEffect(() => {
       navigation.setOptions({
-         showHeader: true,
+        tabBarStyle: {
+          display: "none",
+        },
       });
-   });
+    }, [navigation]);
+
 
    return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, { useEffect, useState } from 'react';
+import { createStackNavigator, useRoute } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AboutScreen from '../screens/AboutScreen';
@@ -7,17 +7,36 @@ import CameraScreen from '../screens/CameraScreen';
 import DashboardScreen from '../screens/DashboardScreen';
 import DrawerIcon from './DrawerIcon';
 import BarcodeScreen from '../screens/BarcodeScreen';
+import { getFocusedRouteNameFromRoute, useNavigationState } from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
-export function HomeStack({ navigation }) {
+export function HomeStack({ navigation, route }) {
+
+   const [display, setDisplay] = useState('')
+
+   useEffect(() => {
+      navigation.setOptions({
+         tabBarStyle: {
+            display: display
+         }
+      });
+
+      const routeName = getFocusedRouteNameFromRoute(route);
+      console.log(routeName);
+      setDisplay('')
+      if (routeName == 'ProfileScreen') {
+         setDisplay('none') // Hide bottom bar
+      }
+   })
+
    return (
       <Stack.Navigator>
          <Stack.Screen
             name="HomeScreen"
             component={HomeScreen}
             options={{
-               title: 'Home Page', //Set Header Title
+               title: 'Home', //Set Header Title
                headerLeft: () => (
                   <DrawerIcon navigationProps={navigation} />
                ),
@@ -78,7 +97,7 @@ export function HomeNavigator({ navigation }) {
                headerLeft: () => (
                   <DrawerIcon navigationProps={navigation} />
                ),
-               title: 'Home Page', //Set Header Title
+               title: 'Dashboard', //Set Header Title
             }}
          />
          <Stack.Screen
