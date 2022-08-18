@@ -1,19 +1,26 @@
 import { useNavigation, useFocusEffect, useLayoutEffect } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-function ProfileScreen({ route }) {
+function ProfileScreen({ navigation, route }) {
 
-   const navigation = useNavigation();
+   useFocusEffect(
+      useCallback(() => {
+         // Hide Tab Bar
+         console.log('focused');
+         navigation.getParent()?.setOptions({
+            tabBarStyle: { display: 'none' },
+         });
 
-   useEffect(() => {
-      navigation.setOptions({
-        tabBarStyle: {
-          display: "none",
-        },
-      });
-    }, [navigation]);
-
+         // Show Tab Bar
+         return () => {
+            console.log('notfocused');
+            navigation.getParent()?.setOptions({
+               tabBarStyle: { display: 'flex' },
+            });
+         };
+      }, [])
+   );
 
    return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

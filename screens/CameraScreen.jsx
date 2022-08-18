@@ -1,40 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function CameraScreen() {
 
    const [hasPermission, setHasPermission] = useState(null);
    const [type, setType] = useState(CameraType.back);
+   const [onFocus, setOnFocus] = useState(false);
 
    useEffect(() => {
       (async () => {
          const { status } = await Camera.requestCameraPermissionsAsync();
          setHasPermission(status === 'granted');
       })();
-   }, []);
+   }, [])
+
+   useFocusEffect(
+      useCallback(() => {
+         setOnFocus(true);
+         console.log('focused');
+
+         return () => {
+            console.log('notfocused');
+            setOnFocus(false);
+            return <View />;
+         };
+      }, [])
+   );
 
    if (hasPermission === null) {
       return <View />;
    }
-   if (hasPermission === false) {
-      return <Text>No access to camera</Text>;
+
+   if (hasPermission === null) {
+      return <View />;
    }
-   return (
-      <View style={styles.container}>
-         <Camera style={styles.camera} type={type}>
-            <View style={styles.buttonContainer}>
-               <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => {
-                     setType(type === CameraType.back ? CameraType.front : CameraType.back);
-                  }}>
-                  <Text style={styles.text}> Flip </Text>
-               </TouchableOpacity>
-            </View>
-         </Camera>
-      </View>
-   );
+
+   if (onFocus) {
+      return (
+         <View style={styles.container}>
+            <Camera style={styles.camera} type={type}>
+               <View style={styles.buttonContainer}>
+                  <TouchableOpacity
+                     style={styles.button}
+                     onPress={() => {
+                        setType(type === CameraType.back ? CameraType.front : CameraType.back);
+                     }}>
+                     <Text style={styles.text}> Flip </Text>
+                  </TouchableOpacity>
+               </View>
+            </Camera>
+         </View>
+      );
+   }
+
 }
 
 const styles = StyleSheet.create({

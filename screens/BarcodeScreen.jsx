@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { Camera, CameraType, FlashMode } from 'expo-camera';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function BarcodeScreen() {
 
@@ -10,14 +11,27 @@ export default function BarcodeScreen() {
    const [type, setType] = useState(CameraType.back);
    const [scanned, setScanned] = useState(false);
    const [flash, setFlash] = useState(FlashMode.off);
+   const [onFocus, setOnFocus] = useState(false);
 
    useEffect(() => {
       (async () => {
          const { status } = await Camera.requestCameraPermissionsAsync();
          setHasPermission(status === 'granted');
       })();
+   }, [])
 
-   }, []);
+   useFocusEffect(
+      useCallback(() => {
+         setOnFocus(true);
+         console.log('focused');
+
+         return () => {
+            console.log('notfocused');
+            setOnFocus(false);
+            return <View />;
+         };
+      }, [])
+   );
 
    const handleBarCodeScanned = ({ type, data }) => {
       setScanned(true);
@@ -30,29 +44,34 @@ export default function BarcodeScreen() {
    if (hasPermission === false) {
       return <Text>No access to camera</Text>;
    }
-   return (
-      <View style={styles.container}>
-         <Camera
-            style={styles.camera}
-            type={type}
-            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-            flashMode={flash}
-            barCodeScannerSettings={{
-               barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
-            }}
-         />
-         {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-         <TouchableOpacity
-            style={styles.flashIcon}
-            onPress={() => {
-               setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off);
-            }}
-         >
-            <Ionicons name="md-flash" size={32} color={flash === FlashMode.off ? "black" : "red"} />
-            {console.log(`Flash mode: ${flash}`)}
-         </TouchableOpacity>
-      </View>
-   );
+
+   if (onFocus) {
+      return (
+         <View style={styles.container}>
+            <Camera
+               style={styles.camera}
+               type={type}
+               onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+               flashMode={flash}
+               barCodeScannerSettings={{
+                  barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+               }}
+            />
+            {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+            <TouchableOpacity
+               style={styles.flashIcon}
+               onPress={() => {
+                  setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off);
+               }}
+            >
+               <Ionicons name="md-flash" size={32} color={flash === FlashMode.off ? "black" : "red"} />
+               {console.log(`Flash mode: ${flash}`)}
+            </TouchableOpacity>
+         </View>
+      );
+   } else {
+      return <View />;
+   }
 }
 
 const styles = StyleSheet.create({

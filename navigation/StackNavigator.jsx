@@ -13,23 +13,6 @@ const Stack = createStackNavigator();
 
 export function HomeStack({ navigation, route }) {
 
-   const [display, setDisplay] = useState('')
-
-   useEffect(() => {
-      navigation.setOptions({
-         tabBarStyle: {
-            display: display
-         }
-      });
-
-      const routeName = getFocusedRouteNameFromRoute(route);
-      console.log(routeName);
-      setDisplay('')
-      if (routeName == 'ProfileScreen') {
-         setDisplay('none') // Hide bottom bar
-      }
-   })
-
    return (
       <Stack.Navigator>
          <Stack.Screen
@@ -43,6 +26,7 @@ export function HomeStack({ navigation, route }) {
             }}
          />
          <Stack.Screen
+            navigationProps={navigation}
             name="ProfileScreen"
             component={ProfileScreen}
             options={{
@@ -87,7 +71,7 @@ export function BarcodeStack({ navigation }) {
    )
 }
 
-export function HomeNavigator({ navigation }) {
+export function DashboardStack({ navigation }) {
    return (
       <Stack.Navigator>
          <Stack.Screen

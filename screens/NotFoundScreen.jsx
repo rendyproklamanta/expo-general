@@ -1,10 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet, Text, Button, Image } from "react-native";
 
 function NotFoundScreen({ navigation }) {
    return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-         <Text>Not Found!</Text>
+         <Text style={{ marginBottom: 20 }}>Not Found!</Text>
+         <Image
+            source={{ uri: require('../assets/not_found.png') }}
+            style={{ marginBottom: 20, width: 400, height: 280, resizeMode: 'contain' }}
+         />
          <Button
             title="back To Home"
             onPress={() => navigation.navigate('Root')}
