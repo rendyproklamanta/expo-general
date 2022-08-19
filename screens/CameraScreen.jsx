@@ -16,6 +16,7 @@ export default function CameraScreen() {
       })();
    }, [])
 
+
    useFocusEffect(
       useCallback(() => {
          setOnFocus(true);
@@ -29,7 +30,7 @@ export default function CameraScreen() {
       }, [])
    );
 
-   if (hasPermission === null || hasPermission === false) {
+   if (hasPermission == null || hasPermission == false || hasPermission == undefined) {
       return (
          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Image
@@ -39,24 +40,25 @@ export default function CameraScreen() {
             <Text>No access to camera</Text>
          </View>
       )
-   }
+   } else {
+      if (onFocus) {
+         return (
+            <View style={styles.container}>
+               <Camera style={styles.camera} type={type}>
+                  <View style={styles.buttonContainer}>
+                     <TouchableOpacity
+                        style={styles.button}
+                        onPress={() => {
+                           setType(type === CameraType.back ? CameraType.front : CameraType.back);
+                        }}>
+                        <Text style={styles.text}> Flip </Text>
+                     </TouchableOpacity>
+                  </View>
+               </Camera>
+            </View>
+         );
+      }
 
-   if (onFocus) {
-      return (
-         <View style={styles.container}>
-            <Camera style={styles.camera} type={type}>
-               <View style={styles.buttonContainer}>
-                  <TouchableOpacity
-                     style={styles.button}
-                     onPress={() => {
-                        setType(type === CameraType.back ? CameraType.front : CameraType.back);
-                     }}>
-                     <Text style={styles.text}> Flip </Text>
-                  </TouchableOpacity>
-               </View>
-            </Camera>
-         </View>
-      );
    }
 
 }

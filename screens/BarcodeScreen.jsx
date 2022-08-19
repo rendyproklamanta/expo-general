@@ -48,34 +48,32 @@ export default function BarcodeScreen() {
             <Text>No access to camera</Text>
          </View>
       )
-   }
-
-   if (onFocus) {
-      return (
-         <View style={styles.container}>
-            <Camera
-               style={styles.camera}
-               type={type}
-               onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-               flashMode={flash}
-               barCodeScannerSettings={{
-                  barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
-               }}
-            />
-            {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-            <TouchableOpacity
-               style={styles.flashIcon}
-               onPress={() => {
-                  setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off);
-               }}
-            >
-               <Ionicons name="md-flash" size={32} color={flash === FlashMode.off ? "black" : "red"} />
-               {console.log(`Flash mode: ${flash}`)}
-            </TouchableOpacity>
-         </View>
-      );
    } else {
-      return <View />;
+      if (onFocus) {
+         return (
+            <View style={styles.container}>
+               <Camera
+                  style={styles.camera}
+                  type={type}
+                  onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                  flashMode={flash}
+                  barCodeScannerSettings={{
+                     barCodeTypes: [BarCodeScanner.Constants.BarCodeType.qr],
+                  }}
+               />
+               {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+               <TouchableOpacity
+                  style={styles.flashIcon}
+                  onPress={() => {
+                     setFlash(flash === FlashMode.off ? FlashMode.torch : FlashMode.off);
+                  }}
+               >
+                  <Ionicons name="md-flash" size={32} color={flash === FlashMode.off ? "black" : "red"} />
+                  {console.log(`Flash mode: ${flash}`)}
+               </TouchableOpacity>
+            </View>
+         );
+      }
    }
 }
 
