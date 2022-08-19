@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Image } from 'react-native';
 import { Camera, CameraType, FlashMode } from 'expo-camera';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -38,11 +38,16 @@ export default function BarcodeScreen() {
       alert(`Bar code with type ${type} and data ${data} has been scanned!`);
    };
 
-   if (hasPermission === null) {
-      return <View />;
-   }
-   if (hasPermission === false) {
-      return <Text>No access to camera</Text>;
+   if (hasPermission === null || hasPermission === false) {
+      return (
+         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Image
+               source={{ uri: require('../assets/no_access.png') }}
+               style={{ marginBottom: 10, width: 400, height: 280, resizeMode: 'contain' }}
+            />
+            <Text>No access to camera</Text>
+         </View>
+      )
    }
 
    if (onFocus) {

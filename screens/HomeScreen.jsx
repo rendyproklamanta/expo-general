@@ -6,23 +6,13 @@ function HomeScreen({ navigation }) {
    return (
       <View style={styles.mainContainer}>
          <Text style={{ marginBottom: 20 }}>This is Home Screen</Text>
-         <Card style={styles.containerStyle}>
-            <Card.Title title="Card Title" subtitle="Card Subtitle" />
+         <Card style={styles.cardStyle} onPress={() => navigation.navigate("ProfileScreen")}>
+            <Card.Title title="Profile" subtitle="Go to profile screen" />
             <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
             <Card.Actions>
-               <Button
-                  onPress={() => navigation.navigate("ProfileScreen")}
-               >Go to profile Screen
-               </Button>
+               <Button onPress={() => navigation.navigate("ProfileScreen")}>Go to profile Screen</Button>
             </Card.Actions>
          </Card>
-
-         {/* <Text>Home!</Text>
-         <Text>This Home Homepage</Text>
-         <Button
-            title="Go to profile Screen"
-            onPress={() => navigation.navigate("ProfileScreen")}
-         /> */}
       </View >
    );
 }
@@ -31,7 +21,8 @@ const styles = {
    mainContainer: {
       padding: 15,
    },
-   containerStyle: {
+   cardStyle: {
+      cursor: 'pointer',
       backgroundColor: 'white',
       borderWidth: 0,
       borderColor: '#808080',

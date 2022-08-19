@@ -8,11 +8,11 @@ const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
    return (
-      <Drawer.Navigator screenOptions={{ headerShown: false }} >
+      <Drawer.Navigator screenOptions={{ headerShown: false }}  >
          {/* <Drawer.Screen name="Tab" component={BottomTabNavigator} options={{ drawerItemStyle: { height: 0 } }} /> */}
          <Drawer.Screen name="Home" component={BottomTabOne} />
          <Drawer.Screen name="Dashboard" component={DashboardStack} />
-         {/* <Drawer.Screen name="Dashboard" component={SampleBottomTabTwo} /> */}
+         {/* <Drawer.Screen name="Dashboard" component={BottomTabTwo} /> */}
       </Drawer.Navigator >
    );
 }

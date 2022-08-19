@@ -16,11 +16,6 @@ export default {
                            ProfileScreen: 'profile',
                         }
                      },
-                     Tab1: {
-                        screens: {
-                           CtnTab1: 'tab1',
-                        }
-                     },
                      Camera: {
                         screens: {
                            CameraScreen: 'camera'
@@ -29,6 +24,16 @@ export default {
                      Barcode: {
                         screens: {
                            BarcodeScreen: 'barcode'
+                        }
+                     },
+                     Camera: {
+                        screens: {
+                           CameraScreen: 'camera'
+                        }
+                     },
+                     Profile: {
+                        screens: {
+                           ProfileScreen: 'profiles'
                         }
                      },
                   }

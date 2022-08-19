@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -29,12 +29,16 @@ export default function CameraScreen() {
       }, [])
    );
 
-   if (hasPermission === null) {
-      return <View />;
-   }
-
-   if (hasPermission === null) {
-      return <View />;
+   if (hasPermission === null || hasPermission === false) {
+      return (
+         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Image
+               source={{ uri: require('../assets/no_access.png') }}
+               style={{ marginBottom: 10, width: 400, height: 280, resizeMode: 'contain' }}
+            />
+            <Text>No access to camera</Text>
+         </View>
+      )
    }
 
    if (onFocus) {

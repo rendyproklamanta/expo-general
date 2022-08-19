@@ -12,7 +12,6 @@ import { getFocusedRouteNameFromRoute, useNavigationState } from '@react-navigat
 const Stack = createStackNavigator();
 
 export function HomeStack({ navigation, route }) {
-
    return (
       <Stack.Navigator>
          <Stack.Screen
@@ -26,16 +25,24 @@ export function HomeStack({ navigation, route }) {
             }}
          />
          <Stack.Screen
-            navigationProps={navigation}
             name="ProfileScreen"
             component={ProfileScreen}
-            options={{
-               title: 'Profile Page', //Set Header Title
-            }}
          />
       </Stack.Navigator>
    )
 }
+
+export function ProfileStack({ navigation, route }) {
+   return (
+      <Stack.Navigator>
+         <Stack.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
+         />
+      </Stack.Navigator>
+   )
+}
+
 
 export function CameraStack({ navigation }) {
    return (
@@ -87,9 +94,6 @@ export function DashboardStack({ navigation }) {
          <Stack.Screen
             name="AboutScreen"
             component={AboutScreen}
-            options={{
-               title: 'About Page', //Set Header Title
-            }}
          />
       </Stack.Navigator >
    )
