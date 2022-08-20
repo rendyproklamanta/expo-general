@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 
 export function BottomTabOne() {
    return (
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
          <Tab.Screen name="Home" component={HomeStack}
             options={{
                tabBarLabelPosition: 'below-icon',

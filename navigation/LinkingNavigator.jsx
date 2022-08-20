@@ -13,7 +13,8 @@ export default {
                      Home: {
                         screens: {
                            HomeScreen: 'home',
-                           ProfileScreen: 'profile',
+                           ProfileScreen: 'home/profile',
+                           DashboardScreen: 'home/dashboard',
                         }
                      },
                      Camera: {
@@ -33,7 +34,7 @@ export default {
                      },
                      Profile: {
                         screens: {
-                           ProfileScreen: 'profiles'
+                           ProfileScreen: 'profile'
                         }
                      },
                   }

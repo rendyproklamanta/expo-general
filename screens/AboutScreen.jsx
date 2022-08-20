@@ -2,6 +2,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Entypo } from '@expo/vector-icons';
+import { BackIcon } from "../navigation/HeaderIcon";
 
 function AboutScreen({ navigation, route }) {
 
@@ -12,15 +13,9 @@ function AboutScreen({ navigation, route }) {
          // Show Back button
          navigation.setOptions({
             title: 'About Page', //Set Header Title
+            headerTitleAlign: 'center',
             headerLeft: () => (
-               <TouchableOpacity onPress={() => navigation.navigate('DashboardScreen')} title="Back" >
-                  <Entypo
-                     name="chevron-left"
-                     size={24}
-                     color="black"
-                     style={{ marginLeft: 10 }}
-                  />
-               </TouchableOpacity >
+               <BackIcon navigationProps={navigation} screen='DashboardScreen' />
             ),
          });
 

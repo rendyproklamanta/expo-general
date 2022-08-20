@@ -2,8 +2,7 @@ import { useNavigation, useFocusEffect, useLayoutEffect, useNavigationState } fr
 import React, { useCallback, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import DrawerIcon from "../navigation/DrawerIcon";
-import { Entypo } from '@expo/vector-icons';
+import { BackIcon, DrawerIcon } from "../navigation/HeaderIcon";
 
 function ProfileScreen({ navigation, route }) {
 
@@ -14,15 +13,9 @@ function ProfileScreen({ navigation, route }) {
          // Show Back button
          navigation.setOptions({
             title: 'Profile Page', //Set Header Title
+            headerTitleAlign: 'center',
             headerLeft: () => (
-               <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} title="Back" >
-                  <Entypo
-                     name="chevron-left"
-                     size={24}
-                     color="black"
-                     style={{ marginLeft: 10 }}
-                  />
-               </TouchableOpacity >
+               <BackIcon navigationProps={navigation} screen='HomeScreen' />
             ),
          });
 

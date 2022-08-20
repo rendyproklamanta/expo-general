@@ -21,6 +21,7 @@ yarn ios
 
 ## Build apk / aab to expo
 
+!!! Using cmd instead of git bash !!!
 - Edit expo name & slug in app.json
 - Login to your expo using eas
 ```
