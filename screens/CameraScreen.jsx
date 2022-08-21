@@ -32,7 +32,7 @@ export default function CameraScreen({ navigation, route }) {
       const imagePermission = await ImagePicker.getMediaLibraryPermissionsAsync();
       //console.log(cameraPermission);
 
-      if (imagePermission.status !== 'granted' || cameraPermission.status !== 'granted') {
+      if (imagePermission.status !== 'granted' && cameraPermission.status !== 'granted') {
          alert('Permission for media access needed.');
          setHasPermission(false);
       } else {

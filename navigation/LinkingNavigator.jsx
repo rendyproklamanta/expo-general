@@ -10,29 +10,29 @@ export default {
 
                Home: {
                   screens: {
-                     Home: {
+                     TabHome: {
                         screens: {
                            HomeScreen: 'home',
                            ProfileScreen: 'home/profile',
                            DashboardScreen: 'home/dashboard',
                         }
                      },
-                     Camera: {
+                     TabCamera: {
                         screens: {
                            CameraScreen: 'camera'
                         }
                      },
-                     Barcode: {
+                     TabBarcode: {
                         screens: {
                            BarcodeScreen: 'barcode'
                         }
                      },
-                     Camera: {
+                     TabCamera: {
                         screens: {
                            CameraScreen: 'camera'
                         }
                      },
-                     Profile: {
+                     TabProfile: {
                         screens: {
                            ProfileScreen: 'profile'
                         }

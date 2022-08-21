@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 export function BottomTabOne() {
    return (
       <Tab.Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
-         <Tab.Screen name="Home" component={HomeStack}
+         <Tab.Screen name="TabHome" component={HomeStack}
             options={{
                tabBarLabelPosition: 'below-icon',
                tabBarLabel: 'Home',
@@ -23,7 +23,7 @@ export function BottomTabOne() {
                }
             }}
          />
-         <Tab.Screen name="Camera"
+         <Tab.Screen name="TabCamera"
             component={CameraStack}
             options={{
                tabBarLabelPosition: 'below-icon',
@@ -33,7 +33,7 @@ export function BottomTabOne() {
                ),
             }}
          />
-         <Tab.Screen name="Barcode" component={BarcodeStack}
+         <Tab.Screen name="TabBarcode" component={BarcodeStack}
             options={{
                tabBarLabelPosition: 'below-icon',
                tabBarLabel: 'QR Scan',
@@ -42,7 +42,7 @@ export function BottomTabOne() {
                ),
             }}
          />
-         <Tab.Screen name="Profile" component={ProfileStack}
+         <Tab.Screen name="TabProfile" component={ProfileStack}
             options={{
                tabBarLabelPosition: 'below-icon',
                tabBarLabel: 'Profile',
